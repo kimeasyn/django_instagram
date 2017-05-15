@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django import forms
+from .models import Photo
 
 class CreateUserForm(UserCreationForm):
         email = forms.EmailField(required = True)
@@ -16,3 +17,11 @@ class CreateUserForm(UserCreationForm):
             if commit:
                 user.save()
             return user
+
+class UploadForm(forms.ModelForm):
+    #comment = forms.CharField(max_length=255)
+    #필드를 써도되고 모델을 연결해도됨
+    class Meta:
+        model = Photo
+        exclude = ('thumnail_image', 'owner')
+        #쓸거만 지정해도 되고 안쓸거만 지정해도 됨

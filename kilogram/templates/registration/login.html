@@ -12,7 +12,8 @@
 
 <form method="post" action="{% url 'login' %}">
   {% csrf_token %}
-  <input type="hidden" name="next" value="" />
+  <input type="hidden" name="next" value="{{next}}" />
+  <!--next = get으로 받아온 parameter가 value값에 들어감(주소)-->
   {{ form.as_p }}
   <button type="submit">로그인</button>
 </form>
